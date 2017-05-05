@@ -1,0 +1,28 @@
+---
+# tasks file for ansible-erpnext
+
+ - name: Install python-pexpect
+   apt: name=python-pexpect state=latest update_cache=yes
+
+ - name: wget install.py
+   get_url:
+     url: https://raw.githubusercontent.com/frappe/bench/master/playbooks/install.py
+     dest: ~/install.py 
+
+ - name: execute install.py
+   sudo: yes
+   expect:
+     command: python install.py --production --user {{ bench_user }}
+     responses: 
+        'Please enter mysql root password: ' : "{{ mysql_pass }}"
+        'Re-enter mysql root password: ' : "{{ mysql_pass }}"
+        'Please enter the default Administrator user password: ' : "{{ admin_pass }}"
+        'Re-enter Administrator password: ' : "{{ admin_pass }}"
+     echo: yes
+     creates: ~/passwords.txt
+     timeout: {{ expect_timeout }}
+
+
+  
+
+

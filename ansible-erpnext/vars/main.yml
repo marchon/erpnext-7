@@ -1,0 +1,7 @@
+---
+# vars file for ansible-erpnext
+
+mysql_pass: Pass@321
+admin_pass: Pass@321
+bench_user: frappe
+expect_timeout: 1500
