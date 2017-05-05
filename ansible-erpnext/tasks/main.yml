@@ -20,7 +20,7 @@
         'Re-enter Administrator password: ' : "{{ admin_pass }}"
      echo: yes
      creates: ~/passwords.txt
-     timeout: {{ expect_timeout }}
+     timeout: "{{ expect_timeout }}"
 
 
   
