@@ -2,6 +2,7 @@
 # tasks file for ansible-erpnext
 
  - name: Install python-pexpect
+   become: true
    apt: name=python-pexpect state=latest update_cache=yes
 
  - name: wget install.py
