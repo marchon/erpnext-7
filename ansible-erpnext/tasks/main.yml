@@ -8,19 +8,22 @@
  - name: wget install.py
    get_url:
      url: https://raw.githubusercontent.com/frappe/bench/master/playbooks/install.py
-     dest: ~/install.py 
+     dest: ~/tmp/install.py
+     mode: 0755 
 
  - name: execute install.py
-   expect:
-     command: python install.py --production 
-     responses: 
-        'Please enter mysql root password: ' : "{{ mysql_pass }}"
-        'Re-enter mysql root password: ' : "{{ mysql_pass }}"
-        'Please enter the default Administrator user password: ' : "{{ admin_pass }}"
-        'Re-enter Administrator password: ' : "{{ admin_pass }}"
-     echo: yes
-     creates: ~/passwords.txt
-     timeout: "{{ expect_timeout }}"
+   raw: python ~/tmp/install.py --production
+   become: true
+#   expect:
+#     command: python install.py --production 
+#     responses: 
+#        'Please enter mysql root password: ' : "{{ mysql_pass }}"
+#        'Re-enter mysql root password: ' : "{{ mysql_pass }}"
+#        'Please enter the default Administrator user password: ' : "{{ admin_pass }}"
+#        'Re-enter Administrator password: ' : "{{ admin_pass }}"
+#     echo: yes
+#     creates: ~/passwords.txt
+#     timeout: "{{ expect_timeout }}"
 
 
   
