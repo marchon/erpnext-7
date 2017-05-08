@@ -11,9 +11,8 @@
      dest: ~/install.py 
 
  - name: execute install.py
-   sudo: yes
    expect:
-     command: python install.py --production --user {{ bench_user }}
+     command: python install.py --production 
      responses: 
         'Please enter mysql root password: ' : "{{ mysql_pass }}"
         'Re-enter mysql root password: ' : "{{ mysql_pass }}"
