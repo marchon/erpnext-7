@@ -8,11 +8,11 @@
  - name: wget install.py
    get_url:
      url: https://raw.githubusercontent.com/frappe/bench/master/playbooks/install.py
-     dest: ~/tmp/install.py
+     dest: ~/install.py
      mode: 0755 
 
  - name: execute install.py
-   raw: python ~/tmp/install.py --production
+   raw: python ~/install.py --production
    become: true
 #   expect:
 #     command: python install.py --production 
